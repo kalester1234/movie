@@ -1,0 +1,12 @@
+{
+  "name": "cineverse-ai-monorepo",
+  "version": "1.0.0",
+  "description": "CineVerse AI Monorepo",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "install:all": "cd frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
