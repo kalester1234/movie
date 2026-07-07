@@ -15,7 +15,7 @@ import HomeSections from './HomeSections'
 
 import type { TMDbMovie } from '@/types/movie'
 
-function minimizeMovie(m: TMDbMovie): TMDbMovie {
+function minimizeMovie(m: any): TMDbMovie {
   return {
     id: m.id || 0,
     title: m.title || m.name || '',
