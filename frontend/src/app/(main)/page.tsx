@@ -17,13 +17,13 @@ import type { TMDbMovie } from '@/types/movie'
 
 function minimizeMovie(m: TMDbMovie): TMDbMovie {
   return {
-    id: m.id,
-    title: m.title,
-    original_title: m.original_title || '',
+    id: m.id || 0,
+    title: m.title || m.name || '',
+    original_title: m.original_title || m.original_name || '',
     overview: m.overview || '',
-    poster_path: m.poster_path,
-    backdrop_path: m.backdrop_path,
-    release_date: m.release_date || '',
+    poster_path: m.poster_path || null,
+    backdrop_path: m.backdrop_path || null,
+    release_date: m.release_date || m.first_air_date || '',
     vote_average: m.vote_average || 0,
     vote_count: m.vote_count || 0,
     popularity: m.popularity || 0,
@@ -31,7 +31,7 @@ function minimizeMovie(m: TMDbMovie): TMDbMovie {
     adult: m.adult || false,
     original_language: m.original_language || '',
     video: m.video || false,
-  }
+  } as any
 }
 
 function minimizeMovies(movies: any[]): TMDbMovie[] {
