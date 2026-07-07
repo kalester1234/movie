@@ -6,7 +6,6 @@ import { getMovieDetails } from '@/services/tmdb'
 import { getBackdropUrl, getPosterUrl, formatYear, getRatingBg, cn, formatCurrency } from '@/utils/helpers'
 import { Star, Clock, Calendar, Film, DollarSign, Globe, TrendingUp, Play } from 'lucide-react'
 import VideoPlayer from '@/components/movie/VideoPlayer'
-import { headers } from 'next/headers'
 import MovieDetailClient from './MovieDetailClient'
 import MovieCard from '@/components/features/movies/MovieCard'
 import AISuggestions from '@/components/movie/AISuggestions'
@@ -43,10 +42,9 @@ export default async function MoviePage({ params }: MoviePageProps) {
     ? getPosterUrl(movie.poster_path, 'lg')
     : null
 
-  // Get streaming providers (defaults to US for now, could be dynamic based on user location)
-  const reqHeaders = await headers()
-  const countryCode = (reqHeaders.get('x-vercel-ip-country') || 'US').toUpperCase()
-  const watchData = movie['watch/providers']?.results?.[countryCode] || movie['watch/providers']?.results?.['US']
+  // Get streaming providers (defaults to US for now)
+  const countryCode = 'US'
+  const watchData = movie['watch/providers']?.results?.[countryCode]
   
   const officialTrailer = movie.videos?.results?.find(
     (v) => v.type === 'Trailer' && v.site === 'YouTube' && v.official
